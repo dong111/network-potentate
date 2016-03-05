@@ -30,6 +30,8 @@
     [request setValue:@"Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko)"  forHTTPHeaderField:@"user-Agent"];
     
     //和服务器建立连接 并且处理请求数据
+    
+#pragma --mark这个方法以及过时  寻找更好的解决方案
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         
         
