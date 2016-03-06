@@ -58,7 +58,7 @@
 //开始解析文档方法
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
-    NSLog(@"1. 打开文档, 准备开始解析");
+//    NSLog(@"1. 打开文档, 准备开始解析");
     
     // 初始化数组容器, 清空容器，便于多次加载数据
     [self.videos removeAllObjects];
@@ -67,26 +67,52 @@
 //开始节点
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict
 {
-    NSLog(@"2.开始遍历节点%@-->%@",elementName,attributeDict);
+//    NSLog(@"2.开始遍历节点%@-->%@",elementName,attributeDict);
+    
+    // 如果开始节点的名称 是video，就创建一个对象
+    if ([elementName isEqualToString:@"video"]) {
+        self.currentVideo = [[Video alloc] init];
+        
+        // 设置videoID
+        self.currentVideo.videoId = attributeDict[@"videoId"];
+    }
+    
+    // 清空字符串的内容，因为马上要进入第3 个方法，要开始拼接当前的节点的内容
+    [self.elementString setString:@""];
 }
 
 
 //解析节点文本元素
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    NSLog(@"3.获取节点的文本节点:%@",string);
+//    NSLog(@"3.获取节点的文本节点:%@",string);
+
+    
+    // 开始拼接
+    [self.elementString appendString:string];
 }
 
 //4.结束节点
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    NSLog(@"4.结束节点:%@",elementName);
+//    NSLog(@"4.结束节点:%@",elementName);
+    if ([elementName isEqualToString:@"video"]) {
+        // 如果结束的节点是video， 需要把这个对象添加到数组
+        [self.videos addObject:self.currentVideo];
+        
+    }else if (![elementName isEqualToString:@"videos"]){
+        [self.currentVideo setValue:self.elementString forKeyPath:elementName];
+    }
 }
 
 //5.结束文档
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
     NSLog(@"5.xml Document遍历结束！");
+    // xml真正解析结束, 可以更新UI, 在主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.dataList = self.videos;
+    });
 }
 
 
@@ -97,15 +123,20 @@
 #pragma --mark tableView代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+     return self.videos.count;
 }
 
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
-}
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    Video *video = self.dataList[indexPath.row];
+    
+    cell.textLabel.text = video.name;
+    
+    return cell;}
 
 
 
