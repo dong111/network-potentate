@@ -7,19 +7,61 @@
 //
 
 #import "ViewController.h"
+#import "Video.h"
 
 @interface ViewController () <NSXMLParserDelegate>
+/**整个xml的数据容器*/
+@property(nonatomic,strong)NSMutableArray *videos;
+
+/**第3步拼接字符串*/
+@property(nonatomic,strong)NSMutableString *elementString;
+
+/**当前的模型*/
+@property(nonatomic,strong) Video *currentVideo;
+
+/**表格的所有数据*/
+@property (nonatomic, strong) NSMutableArray *dataList;
 
 @end
 
 @implementation ViewController
+- (void)setDataList:(NSMutableArray *)dataList
+{
+    _dataList = dataList;
+    
+    // 只要重新给表格的数据容器赋值，就刷新
+    [self.tableView reloadData];
+    
+    // 隐藏刷新控件
+//    [self.refreshControl endRefreshing];
+}
 
 
 #pragma =mark 实现NSXMLParserDelegate方法
+
+- (NSMutableArray *)videos
+{
+    if (_videos == nil) {
+        _videos = [NSMutableArray array];
+    }
+    return _videos;
+}
+
+- (NSMutableString *)elementString
+{
+    if (_elementString == nil) {
+        _elementString = [NSMutableString string];
+    }
+    return _elementString;
+}
+
 //开始解析文档方法
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
- NSLog(@"1. 打开文档, 准备开始解析");
+    NSLog(@"1. 打开文档, 准备开始解析");
+    
+    // 初始化数组容器, 清空容器，便于多次加载数据
+    [self.videos removeAllObjects];
 }
 
 //开始节点
