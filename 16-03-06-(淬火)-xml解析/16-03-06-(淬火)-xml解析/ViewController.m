@@ -8,16 +8,44 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <NSXMLParserDelegate>
 
 @end
 
 @implementation ViewController
 
 
+#pragma =mark 实现NSXMLParserDelegate方法
+//开始解析文档方法
+- (void)parserDidStartDocument:(NSXMLParser *)parser
+{
+ NSLog(@"1. 打开文档, 准备开始解析");
+}
+
+//开始节点
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict
+{
+    NSLog(@"2.开始遍历节点%@-->%@",elementName,attributeDict);
+}
 
 
+//解析节点文本元素
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    NSLog(@"3.获取节点的文本节点:%@",string);
+}
 
+//4.结束节点
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    NSLog(@"4.结束节点:%@",elementName);
+}
+
+//5.结束文档
+- (void)parserDidEndDocument:(NSXMLParser *)parser
+{
+    NSLog(@"5.xml Document遍历结束！");
+}
 
 
 
@@ -63,10 +91,10 @@
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
         
         // 2. 设置代理
-       
+        parser.delegate = self;
         
         // 3. 解析器开始解析
-        
+        [parser parse];
     }];
 }
 
