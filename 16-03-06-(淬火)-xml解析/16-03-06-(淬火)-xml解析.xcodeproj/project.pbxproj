@@ -16,6 +16,7 @@
 		2B1812B41C8C6EA9003A5F43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B1812B21C8C6EA9003A5F43 /* LaunchScreen.storyboard */; };
 		2B1812BF1C8C6EA9003A5F43 /* _6_03_06______xml__Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1812BE1C8C6EA9003A5F43 /* _6_03_06______xml__Tests.m */; };
 		2B1812CA1C8C6EA9003A5F43 /* _6_03_06______xml__UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1812C91C8C6EA9003A5F43 /* _6_03_06______xml__UITests.m */; };
+		2B1812DA1C8C6F8A003A5F43 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1812D91C8C6F8A003A5F43 /* Video.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		2B1812C51C8C6EA9003A5F43 /* 16-03-06-(淬火)-xml解析UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "16-03-06-(淬火)-xml解析UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B1812C91C8C6EA9003A5F43 /* _6_03_06______xml__UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_6_03_06______xml__UITests.m"; sourceTree = "<group>"; };
 		2B1812CB1C8C6EA9003A5F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B1812D81C8C6F8A003A5F43 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		2B1812D91C8C6F8A003A5F43 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 		2B1812A01C8C6EA9003A5F43 /* 16-03-06-(淬火)-xml解析 */ = {
 			isa = PBXGroup;
 			children = (
+				2B1812D71C8C6F77003A5F43 /* model */,
 				2B1812A41C8C6EA9003A5F43 /* AppDelegate.h */,
 				2B1812A51C8C6EA9003A5F43 /* AppDelegate.m */,
 				2B1812A71C8C6EA9003A5F43 /* ViewController.h */,
@@ -141,6 +145,15 @@
 				2B1812CB1C8C6EA9003A5F43 /* Info.plist */,
 			);
 			path = "16-03-06-(淬火)-xml解析UITests";
+			sourceTree = "<group>";
+		};
+		2B1812D71C8C6F77003A5F43 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				2B1812D81C8C6F8A003A5F43 /* Video.h */,
+				2B1812D91C8C6F8A003A5F43 /* Video.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +289,7 @@
 				2B1812A91C8C6EA9003A5F43 /* ViewController.m in Sources */,
 				2B1812A61C8C6EA9003A5F43 /* AppDelegate.m in Sources */,
 				2B1812AF1C8C6EA9003A5F43 /* _6_03_06______xml__.xcdatamodeld in Sources */,
+				2B1812DA1C8C6F8A003A5F43 /* Video.m in Sources */,
 				2B1812A31C8C6EA9003A5F43 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
