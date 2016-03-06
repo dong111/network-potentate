@@ -33,7 +33,7 @@
     [self.tableView reloadData];
     
     // 隐藏刷新控件
-//    [self.refreshControl endRefreshing];
+    [self.refreshControl endRefreshing];
 }
 
 
