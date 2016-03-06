@@ -16,6 +16,8 @@
 		2B1812FA1C8CEE2E003A5F43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B1812F81C8CEE2E003A5F43 /* LaunchScreen.storyboard */; };
 		2B1813051C8CEE2E003A5F43 /* _6_03_07______XML_Dom___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1813041C8CEE2E003A5F43 /* _6_03_07______XML_Dom___Tests.m */; };
 		2B1813101C8CEE2E003A5F43 /* _6_03_07______XML_Dom___UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B18130F1C8CEE2E003A5F43 /* _6_03_07______XML_Dom___UITests.m */; };
+		2B1813221C8CEF10003A5F43 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1813211C8CEF10003A5F43 /* GDataXMLNode.m */; };
+		2B1813261C8CEF58003A5F43 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1813251C8CEF58003A5F43 /* Video.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		2B18130B1C8CEE2E003A5F43 /* 16-03-07-(淬火)-XML(Dom)解析UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "16-03-07-(淬火)-XML(Dom)解析UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B18130F1C8CEE2E003A5F43 /* _6_03_07______XML_Dom___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_6_03_07______XML_Dom___UITests.m"; sourceTree = "<group>"; };
 		2B1813111C8CEE2E003A5F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B1813201C8CEF10003A5F43 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		2B1813211C8CEF10003A5F43 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		2B1813241C8CEF58003A5F43 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		2B1813251C8CEF58003A5F43 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,8 @@
 		2B1812E61C8CEE2D003A5F43 /* 16-03-07-(淬火)-XML(Dom)解析 */ = {
 			isa = PBXGroup;
 			children = (
+				2B1813231C8CEF4E003A5F43 /* model */,
+				2B18131D1C8CEEF2003A5F43 /* utils */,
 				2B1812EA1C8CEE2D003A5F43 /* AppDelegate.h */,
 				2B1812EB1C8CEE2D003A5F43 /* AppDelegate.m */,
 				2B1812ED1C8CEE2D003A5F43 /* ViewController.h */,
@@ -141,6 +149,32 @@
 				2B1813111C8CEE2E003A5F43 /* Info.plist */,
 			);
 			path = "16-03-07-(淬火)-XML(Dom)解析UITests";
+			sourceTree = "<group>";
+		};
+		2B18131D1C8CEEF2003A5F43 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				2B18131F1C8CEF01003A5F43 /* xml(Dom) */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		2B18131F1C8CEF01003A5F43 /* xml(Dom) */ = {
+			isa = PBXGroup;
+			children = (
+				2B1813201C8CEF10003A5F43 /* GDataXMLNode.h */,
+				2B1813211C8CEF10003A5F43 /* GDataXMLNode.m */,
+			);
+			name = "xml(Dom)";
+			sourceTree = "<group>";
+		};
+		2B1813231C8CEF4E003A5F43 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				2B1813241C8CEF58003A5F43 /* Video.h */,
+				2B1813251C8CEF58003A5F43 /* Video.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +309,8 @@
 			files = (
 				2B1812EF1C8CEE2D003A5F43 /* ViewController.m in Sources */,
 				2B1812F51C8CEE2D003A5F43 /* _6_03_07______XML_Dom___.xcdatamodeld in Sources */,
+				2B1813221C8CEF10003A5F43 /* GDataXMLNode.m in Sources */,
+				2B1813261C8CEF58003A5F43 /* Video.m in Sources */,
 				2B1812EC1C8CEE2D003A5F43 /* AppDelegate.m in Sources */,
 				2B1812E91C8CEE2D003A5F43 /* main.m in Sources */,
 			);
@@ -417,8 +453,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "16-03-07-(淬火)-XML(Dom)解析/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cdmq.-6-03-07------XML-Dom---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -428,8 +466,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "16-03-07-(淬火)-XML(Dom)解析/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cdmq.-6-03-07------XML-Dom---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
