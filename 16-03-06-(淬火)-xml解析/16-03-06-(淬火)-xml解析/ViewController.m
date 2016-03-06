@@ -58,7 +58,7 @@
 //开始解析文档方法
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
-//    NSLog(@"1. 打开文档, 准备开始解析");
+    NSLog(@"1. 打开文档, 准备开始解析");
     
     // 初始化数组容器, 清空容器，便于多次加载数据
     [self.videos removeAllObjects];
@@ -108,7 +108,7 @@
 //5.结束文档
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    NSLog(@"5.xml Document遍历结束！");
+//    NSLog(@"5.xml Document遍历结束！");
     // xml真正解析结束, 可以更新UI, 在主线程
     dispatch_async(dispatch_get_main_queue(), ^{
         self.dataList = self.videos;
@@ -148,7 +148,7 @@
     [self loadData];
 }
 //网络加载xml数据
-- (void) loadData
+- (IBAction) loadData
 {
     // 1. url
     NSURL *url = [NSURL URLWithString:@"http://localhost:8080/ios/static/xml/videos.xml"];
