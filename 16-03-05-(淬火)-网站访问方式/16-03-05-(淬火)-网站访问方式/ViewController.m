@@ -15,14 +15,102 @@
 
 @implementation ViewController
 
+
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+    [self deom1];
+}
+
+/**
+ *  网络连接
+ 
+ NSURLRequestUseProtocolCachePolicy = 0,//默认缓存策略，会自动缓存
+ 
+ NSURLRequestReloadIgnoringLocalCacheData = 1,//忽略本地缓存，重新加载
+
+
+ 下面两种策略 一般是离线时候请求使用。一般配合Reachability(苹果提供的检测网络连接的框架)使用
+ 
+ //用户使用wifi时候使用
+ NSURLRequestReturnCacheDataElseLoad = 2,//如果有缓存就使用缓存，没有就上网加载
+ 
+ //下面这种策略实用3G网络
+ NSURLRequestReturnCacheDataDontLoad = 3,//如果有缓存就用缓存，没有就返回空，不会上网加载
+ 
+ 
+ 
+* timeoutInterval 超时时间设置，默认是60秒，一般设置成15-20秒。超过这个时间就不用等待了
+ 
+ 
+ 
+ *NSURLConnection 与服务器建立连接
+ 
+ 
+ 参数:Request 请求
+ queue: 队列，这个队列，是完成以后，回调block执行的队列、
+ Asynchronous：只要是异步，肯定会开新的线程
+ 
+ // 使用场景：如果下载的是压缩包，解压缩也是耗时操作。也需要放在子线程
+ // 如果回调block里面只需要更新UI，那么就可以只开始指定queue为主队列
+ response: 服务器的响应（包含响应行/响应头...下载的时候才去关心这个）
+ data： 返回的二进制数据
+ connectionError：在连接服务器的时候的错误，只要是能正常连接到服务器，就不会有错。
+ 只要有网络候出现的错访问，就会可能有错误、
+ 
+ 
+ 
+
+ */
+- (void) deom1
+{
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/ios/api/v1/ios/list"];
+    
+//   NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLRequest *request =  [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:15];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        
+        if (connectionError || data == nil) {
+            NSLog(@"%@----您的网络不给力，请稍后再试", connectionError);
+            return;
+        }// url错了，才会有错误信息
+        
+
+        NSString *rspData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            
+        NSLog(@"%@",rspData);
+
+
+    }];
+    
+}
+
+
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+
+//    [self callBaidu];
+}
+
+//访问百度
+
+- (void) callBaidu
+{
+    
     //确定一个url
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
     
     //建立一个request
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
@@ -35,19 +123,14 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         
         
-            NSString *rspStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *rspStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-//            NSLog(@"%@",rspStr);
+        //            NSLog(@"%@",rspStr);
         [self.webView loadHTMLString:rspStr baseURL:url];
         
     }];
-    
-    
-
-    
-    
-
 }
+
 
 
 @end
