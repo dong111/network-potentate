@@ -21,8 +21,42 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
-    [self demo2];
+    [self demo3];
 }
+
+//json数据反序列化
+- (void) demo3
+{
+    // 1. url
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/ios/api/v1/ios/list"];
+    
+    // 2. 建立请求
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:0 timeoutInterval:2];
+    
+    
+    // 3. 连接
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        /**
+         容器是可变的，结果是可变的
+         *NSJSONReadingMutableContainers = (1UL << 0),
+         叶子节点是可变的
+         NSJSONReadingMutableLeaves = (1UL << 1),
+           允许根节点 可以不是NSArray，
+         NSJSONReadingAllowFragments = (1UL << 2)
+         */
+        
+        
+       id result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:NULL];
+        
+        NSLog(@"result :%@ --> %@",result,[result class]);
+        
+        
+    }];
+    
+}
+
+
 
 //同步请求
 - (void) demo2
