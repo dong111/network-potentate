@@ -7,12 +7,25 @@
 //
 
 #import "ViewController.h"
+#import "Video.h"
+
 
 @interface ViewController ()
+
+@property (nonatomic,strong) NSMutableArray *videos;
 
 @end
 
 @implementation ViewController
+
+- (NSArray *)videos
+{
+    if (_videos==nil) {
+        _videos = [NSMutableArray array];
+    }
+    return _videos;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
