@@ -21,8 +21,41 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
-    [self deom1];
+    [self demo2];
 }
+
+//同步请求
+- (void) demo2
+{
+    // 1. url
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/ios/api/v1/ios/list"];
+    
+    // 2. 建立请求
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:0 timeoutInterval:2];
+    
+    NSURLResponse *rsp = nil;
+    NSError *error =nil;
+    // 3. 建立连接Connection， 发送同步请求到服务器
+    /**
+     参数:
+     SynchronousRequest发送同步请求
+     returningResponse: 服务器响应的地址
+     
+     
+     error: 错误信息的地址
+     
+     NULL：本质就是0, 表示的是地址是0 (swift里面取消了NULL)
+     nil: 表示地址为0的空对象, 可以给nil发消息
+     */
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&rsp error:&error];
+    
+    NSString *rspStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"%@",rspStr);
+    
+}
+
+
 
 /**
  *  网络连接
@@ -64,7 +97,7 @@
  
 
  */
-- (void) deom1
+- (void) demo1
 {
     NSURL *url = [NSURL URLWithString:@"http://localhost:8080/ios/api/v1/ios/list"];
     
