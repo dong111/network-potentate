@@ -57,7 +57,7 @@
             
             //遍历第一级元素属性节点
             for (GDataXMLNode *node in ele.attributes) {
-                NSLog(@"attr -->%@",node);
+//                NSLog(@"attr -->%@",node);
                 [video setValue:node.stringValue forKeyPath:node.name];
                 
             }
@@ -66,13 +66,36 @@
             
         }
         
-        NSLog(@"videos count =%d",self.videos.count);
+        NSLog(@"videos count =%@",self.videos);
         
         
     }];
 
 
 }
+
+
+
+
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    
+    NSArray *array = @[@"张三", @"lisi", @"123"];
+    
+    NSLog(@"%@", array);
+    
+//        for (NSString *str in array) {
+//            NSLog(@"%@", str);
+//        }
+}
+
+
+
+
+
 
 
 
